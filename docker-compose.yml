@@ -1,11 +1,11 @@
-version: '2.4'
+version: '3.9'
 
 services:
  web:
   image: tutum/apache-php
   hostname: web-user-php
   volumes:
-   - ./php:/var/www/html
+   - ./app-php/db-data:/var/www/html
   ports: 
    - 8000:80
   networks:
@@ -15,7 +15,7 @@ services:
    image: mariadb
    hostname: db
    volumes: 
-    - ./my-db:/var/lib/mysql
+    - ./db-data:/var/lib/mysql
    environment:
     - MARIADB_ROOT_PASSWORD=root
    networks:

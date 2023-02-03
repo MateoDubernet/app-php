@@ -1,17 +1,34 @@
 node {
 
-   def app
    def registryProjet='mateo1345/'
-   def IMAGE="${registryProjet}app:3.5"
+
+   stage('Checking'){
+        sh 'docker version'
+   }
 
     stage('Clone') {
         checkout scm
     }
 
-    def img = stage('Build') {
-        echo "build"
-        docker.build("$IMAGE",  '.')
+    stage('Install'){
+        echo "install"
+        sh 'apk update'
+        sh 'apk add docker-compose'
     }
+
+    stage('Build') {
+        echo "build"
+        sh 'docker-compose up -d'
+    }
+
+    stage('Test'){
+        sh 'curl localhost:8000'
+    }
+
+    // def img = stage('Build') {
+    //     echo "build"
+    //     docker.build("$IMAGE",  '.')
+    // }
 
     // stage('Run') {
     //     echo "run"

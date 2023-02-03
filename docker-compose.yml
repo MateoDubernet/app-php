@@ -11,7 +11,8 @@ services:
   networks:
    - frontend
    - backend
-  db: 
+
+ db: 
    image: mariadb
    hostname: db
    volumes: 

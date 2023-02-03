@@ -7,7 +7,7 @@ services:
   volumes:
    - ./app-php/db-data:/var/www/html
   ports: 
-   - 8000:80
+   - 9000:80
   networks:
    - frontend
    - backend

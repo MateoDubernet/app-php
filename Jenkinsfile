@@ -16,7 +16,7 @@ node {
     }
 
     stage('Test'){
-        sh 'curl localhost:8000/create_db.php'
+        sh 'curl localhost:9000/create_db.php'
     }
 
     // def img = stage('Build') {

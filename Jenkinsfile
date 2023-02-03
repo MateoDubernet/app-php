@@ -5,16 +5,22 @@ node {
 
     stage('Clone') {
         echo "clone"
-          checkout scm
+        checkout scm
     }
 
     def img = stage('Build') {
         echo "build"
-        //   docker.build("$IMAGE",  '.')
+        steps {
+            sh 'docker compose up -d'
+            sh 'docker compose ps'
+        }
     }
 
     stage('Run') {
         echo "run"
+        steps{
+            sh 'curl http://localhost:8000'
+        }
         //   img.withRun("--name run-$BUILD_ID -p 8000:80") { c ->
         //   }
     }

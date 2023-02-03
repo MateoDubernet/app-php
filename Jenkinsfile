@@ -10,17 +10,13 @@ node {
 
     def img = stage('Build') {
         echo "build"
-        steps {
-            sh 'docker compose up -d'
-            sh 'docker compose ps'
-        }
+        sh 'docker compose up -d'
+        sh 'docker compose ps'
     }
 
     stage('Run') {
         echo "run"
-        steps{
-            sh 'curl http://localhost:8000'
-        }
+        sh 'curl http://localhost:8000'
         //   img.withRun("--name run-$BUILD_ID -p 8000:80") { c ->
         //   }
     }

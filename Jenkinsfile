@@ -4,9 +4,15 @@ pipeline  {
 //    def registryProjet='mateo1345/'
 
     stages{
-    stage('Clone') {
+        stage('Clone') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage ("Prune") {
+            steps {
+            sh 'docker system prune -a --volumes -f'
             }
         }
 
@@ -20,20 +26,6 @@ pipeline  {
         stage('Build') {
             steps{
                 sh 'docker-compose up -d'
-            }
-        }
-
-        // stage('Push') {
-        //     echo "push"
-        // //    docker.withRegistry('https://index.docker.io/v1/' , 'hub_docker_id') {
-        // //           img.push 'latest'
-        // //           img.push()
-        // //       }
-        // }
-
-        stage('Curl'){
-            steps{
-                sh 'curl localhost:9000/create_db.php'
             }
         }
     }

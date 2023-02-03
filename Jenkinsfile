@@ -2,11 +2,6 @@ node {
 
    def registryProjet='mateo1345/'
 
-   stage('Checking'){
-        sh 'docker version'
-        sh 'docker info'
-   }
-
     stage('Clone') {
         checkout scm
     }

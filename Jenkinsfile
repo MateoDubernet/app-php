@@ -10,8 +10,8 @@ node {
 
     def img = stage('Build') {
         echo "build"
-        sh 'docker compose up -d'
-        sh 'docker compose ps'
+        sh 'docker-compose up -d'
+        sh 'docker-compose ps'
     }
 
     stage('Run') {

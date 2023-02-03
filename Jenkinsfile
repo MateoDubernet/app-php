@@ -1,22 +1,31 @@
-node {
+pipeline  {
 
+    agent any
    def registryProjet='mateo1345/'
 
     stage('Clone') {
-        checkout scm
+        steps {
+            checkout scm
+        }
     }
 
     stage('Install'){
-        sh 'apk update'
-        sh 'apk add docker-compose'
+        steps{
+            sh 'apk update'
+            sh 'apk add docker-compose'
+        }
     }
 
     stage('Build') {
-        sh 'docker-compose up -d'
+        steps{
+            sh 'docker-compose up -d'
+        }
     }
 
-    stage('Test'){
-        sh 'curl localhost:9000/create_db.php'
+    stage('Curl'){
+        steps{
+            sh 'curl localhost:9000/create_db.php'
+        }
     }
 
     // def img = stage('Build') {

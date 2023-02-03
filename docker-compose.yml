@@ -20,4 +20,6 @@ services:
     - MARIADB_ROOT_PASSWORD=root
    networks:
     - backend
-  
+networks:
+ frontend: 
+ backend:

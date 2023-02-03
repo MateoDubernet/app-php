@@ -4,6 +4,7 @@ node {
 
    stage('Checking'){
         sh 'docker version'
+        sh 'docker info'
    }
 
     stage('Clone') {
@@ -11,18 +12,16 @@ node {
     }
 
     stage('Install'){
-        echo "install"
         sh 'apk update'
         sh 'apk add docker-compose'
     }
 
     stage('Build') {
-        echo "build"
         sh 'docker-compose up -d'
     }
 
     stage('Test'){
-        sh 'curl localhost:8000'
+        sh 'curl localhost:8000/create_db'
     }
 
     // def img = stage('Build') {

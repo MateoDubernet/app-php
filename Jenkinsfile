@@ -1,7 +1,6 @@
 pipeline  {
 
    agent any
-//    def registryProjet='mateo1345/'
 
     stages{
         stage('Clone') {
